@@ -1,4 +1,4 @@
-# DevTask Tracker 👨‍💻
+# DevTask Tracker
 
 Aplicación FullStack para la gestión de tareas de desarrollo.
 
