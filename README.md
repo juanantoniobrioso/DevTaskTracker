@@ -1,9 +1,9 @@
 # DevTask Tracker 
 
-Aplicación FullStack para la gestión de tareas de desarrollo (Pendientes/Completadas).
+Aplicación FullStack para la gestión de tareas de desarrollo 
 
 ## Tecnologías Utilizadas
-- **Frontend:** HTML5 Semántico, CSS3 (Grid/Flexbox), JavaScript (ES6+ fetch/async-await).
+- **Frontend:** HTML5 Semántico, CSS3, JavaScript 
 - **Backend:** Node.js, Express.
 - **Base de Datos:** MongoDB Atlas (Mongoose).
 

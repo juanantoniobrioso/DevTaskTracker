@@ -39,4 +39,18 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+// 4. PUT /api/tasks/:id - Actualizar estado de la tarea
+router.put('/:id', async (req, res) => {
+    try {
+        const updatedTask = await Task.findByIdAndUpdate(
+            req.params.id, 
+            { estado: req.body.estado }, 
+            { new: true }
+        );
+        res.json(updatedTask);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al actualizar la tarea' });
+    }
+});
+
 module.exports = router;

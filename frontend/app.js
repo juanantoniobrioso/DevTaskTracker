@@ -18,29 +18,47 @@ async function fetchTasks() {
 
 // Función para pintar tareas en el DOM
 function renderTasks(tasks) {
-    const container = document.getElementById('tasksList');
-    container.innerHTML = ''; 
+    const pendingContainer = document.getElementById('pendingList');
+    const completedContainer = document.getElementById('completedList');
+    
+    // Limpiamos ambas listas antes de repintar
+    pendingContainer.innerHTML = '';
+    completedContainer.innerHTML = '';
 
     tasks.forEach(task => {
         const taskCard = document.createElement('div');
         taskCard.className = 'task-card';
         
-        const estadoTexto = task.estado ? 'Completada' : 'Pendiente';
-        const estadoClase = task.estado ? 'status-done' : 'status-pending';
+        if (task.estado) {
+            taskCard.classList.add('is-complete');
+        }
 
-        if(task.estado) taskCard.classList.add('is-complete');
+        const actionButton = !task.estado 
+            ? `<button class="btn-complete" onclick="toggleTask('${task._id}', true)">Completar</button>`
+            : `<button class="btn-reopen" onclick="toggleTask('${task._id}', false)">Reabrir</button>`;
 
         taskCard.innerHTML = `
             <div>
                 <div class="header-card">
                     <h3>${task.titulo}</h3>
-                    <span class="badge ${estadoClase}">${estadoTexto}</span>
+                    <span class="badge ${task.estado ? 'status-done' : 'status-pending'}">
+                        ${task.estado ? 'COMPLETADA' : 'PENDIENTE'}
+                    </span>
                 </div>
                 <small>Tecnología: <strong>${task.tecnologia}</strong></small>
             </div>
-            <button class="btn-delete" onclick="deleteTask('${task._id}')">Eliminar</button>
+            
+            <div class="actions">
+                ${actionButton}
+                <button class="btn-delete" onclick="deleteTask('${task._id}')">Eliminar</button>
+            </div>
         `;
-        container.appendChild(taskCard);
+
+        if (task.estado) {
+            completedContainer.appendChild(taskCard);
+        } else {
+            pendingContainer.appendChild(taskCard);
+        }
     });
 }
 
@@ -75,5 +93,19 @@ async function deleteTask(id) {
         fetchTasks(); // Recargar lista
     } catch (error) {
         console.error('Error eliminando tarea:', error);
+    }
+}
+
+// 4. Actualizar estado (PUT)
+async function toggleTask(id, nuevoEstado) {
+    try {
+        await fetch(`${API_URL}/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ estado: nuevoEstado })
+        });
+        fetchTasks(); 
+    } catch (error) {
+        console.error('Error actualizando tarea:', error);
     }
 }
