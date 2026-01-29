@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1>DevTask Tracker 👨‍💻</h1>
+        <h1>DevTask Tracker</h1>
         <p>Gestor de tareas para desarrolladores</p>
     </header>
 
@@ -16,19 +16,23 @@
         <section class="card">
             <h2>Nueva Tarea</h2>
             <form id="taskForm">
-                <input type="text" id="titulo" placeholder="Título de la tarea (ej: Corregir Bug #12)" required>
+                <input type="text" id="titulo" placeholder="Título de la tarea" required>
                 <select id="tecnologia">
                     <option value="JS">JavaScript</option>
                     <option value="Java">Java</option>
                     <option value="Python">Python</option>
                     <option value="SQL">SQL</option>
                 </select>
+                <select id="estado">
+                    <option value="false">Pendiente</option>
+                    <option value="true">Completada</option>
+                </select>
                 <button type="submit">Guardar Tarea</button>
             </form>
         </section>
 
         <section>
-            <h2>Tareas Pendientes</h2>
+            <h2>Tareas</h2>
             <div id="tasksList" class="grid-container">
                 </div>
         </section>

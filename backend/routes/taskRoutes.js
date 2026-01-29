@@ -1,9 +1,8 @@
-// backend/routes/taskRoutes.js
 const express = require('express');
 const router = express.Router();
-const Task = require('../models/Task'); // Importamos el modelo
+const Task = require('../models/Task'); 
 
-// 1. GET /api/tasks - Obtener todas las tareas [cite: 36]
+// 1. GET /api/tasks - Obtener todas las tareas
 router.get('/', async (req, res) => {
     try {
         const tasks = await Task.find().sort({ fecha: -1 }); // Las más nuevas primero
@@ -13,23 +12,24 @@ router.get('/', async (req, res) => {
     }
 });
 
-// 2. POST /api/tasks - Crear nueva tarea [cite: 36]
+// 2. POST /api/tasks - Crear nueva tarea 
 router.post('/', async (req, res) => {
     try {
         // Creamos la tarea con los datos que vienen del frontend (req.body)
         const newTask = new Task({
             titulo: req.body.titulo,
-            tecnologia: req.body.tecnologia
+            tecnologia: req.body.tecnologia,
+            estado: req.body.estado
         });
         
         const savedTask = await newTask.save(); // Guardar en MongoDB Atlas
-        res.status(201).json(savedTask); // 201 = Creado con éxito
+        res.status(201).json(savedTask); 
     } catch (error) {
         res.status(500).json({ error: 'Error al guardar la tarea' });
     }
 });
 
-// 3. DELETE /api/tasks/:id - Borrar tarea [cite: 37]
+// 3. DELETE /api/tasks/:id - Borrar tarea 
 router.delete('/:id', async (req, res) => {
     try {
         await Task.findByIdAndDelete(req.params.id);

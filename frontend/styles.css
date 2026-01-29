@@ -81,3 +81,43 @@ button:hover { opacity: 0.9; }
     margin-top: 10px;
     align-self: flex-end;
 }
+
+/* frontend/styles.css */
+
+/* Cabecera de la tarjeta para alinear título y badge */
+.header-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.header-card h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+/* Estilos de las etiquetas (Badges) */
+.badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-pending {
+    background-color: #f1c40f; /* Amarillo */
+    color: #fff;
+}
+
+.status-done {
+    background-color: #2ecc71; /* Verde */
+    color: #fff;
+}
+
+/* Cambiar el borde de la tarjeta si está completada */
+.task-card.is-complete {
+    border-left-color: #2ecc71;
+    background-color: #fafffb;
+}

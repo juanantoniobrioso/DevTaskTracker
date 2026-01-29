@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
-app.use(express.json()); // Permite recibir JSON en POST (RA2.a)
+app.use(express.json()); // Permite recibir JSON en POST
 app.use(express.static('frontend'));
 
 // Importar rutas

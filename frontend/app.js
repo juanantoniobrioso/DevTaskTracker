@@ -19,16 +19,23 @@ async function fetchTasks() {
 // Función para pintar tareas en el DOM
 function renderTasks(tasks) {
     const container = document.getElementById('tasksList');
-    container.innerHTML = ''; // Limpiar lista
+    container.innerHTML = ''; 
 
     tasks.forEach(task => {
-        // Crear elementos dinámicamente
         const taskCard = document.createElement('div');
         taskCard.className = 'task-card';
         
+        const estadoTexto = task.estado ? 'Completada' : 'Pendiente';
+        const estadoClase = task.estado ? 'status-done' : 'status-pending';
+
+        if(task.estado) taskCard.classList.add('is-complete');
+
         taskCard.innerHTML = `
             <div>
-                <h3>${task.titulo}</h3>
+                <div class="header-card">
+                    <h3>${task.titulo}</h3>
+                    <span class="badge ${estadoClase}">${estadoTexto}</span>
+                </div>
                 <small>Tecnología: <strong>${task.tecnologia}</strong></small>
             </div>
             <button class="btn-delete" onclick="deleteTask('${task._id}')">Eliminar</button>
@@ -39,22 +46,23 @@ function renderTasks(tasks) {
 
 // 2. Crear nueva tarea (POST)
 document.getElementById('taskForm').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Evitar recarga de página
+    e.preventDefault();
 
     const titulo = document.getElementById('titulo').value;
     const tecnologia = document.getElementById('tecnologia').value;
+    const estado = document.getElementById('estado').value === 'true'; 
 
     try {
         await fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ titulo, tecnologia })
+            body: JSON.stringify({ titulo, tecnologia, estado }) 
         });
         
-        document.getElementById('taskForm').reset(); // Limpiar formulario
-        fetchTasks(); // Recargar lista
+        document.getElementById('taskForm').reset(); 
+        fetchTasks(); 
     } catch (error) {
-        console.error('Error guardando tarea:', error);
+        console.error('Error:', error);
     }
 });
 
