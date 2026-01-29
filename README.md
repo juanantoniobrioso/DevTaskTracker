@@ -15,9 +15,9 @@ Aplicación FullStack para la gestión de tareas de desarrollo
 
 Sigue estos pasos para arrancar el proyecto en tu máquina local:
 
-    ### Pegar esto en un archivo creado manualmente .env (cambiar <USUARIO> y <CONTRASEÑA> por la tuya)
-    PORT=3000
-    MONGO_URI=mongodb+srv://<USUARIO>:<CONTRASEÑA>@cluster0.xxxxx.mongodb.net/devtasktracker?retryWrites=true&w=majority
+**Crear archivo .env (sustituir <USUARIO> y <CONTRASEÑA> por las tuyas)**
+`PORT=3000`
+`MONGO_URI=mongodb+srv://<USUARIO>:<CONTRASEÑA>@cluster0.xxxxx.mongodb.net/devtasktracker?retryWrites=true&w=majority`
 
-    ### Instalar las dependencias poniendo esto desde la consola
-    npm install
+**Instalar las dependencias poniendo esto en la consola**
+`npm install`
