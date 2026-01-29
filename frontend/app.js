@@ -21,7 +21,6 @@ function renderTasks(tasks) {
     const pendingContainer = document.getElementById('pendingList');
     const completedContainer = document.getElementById('completedList');
     
-    // Limpiamos ambas listas antes de repintar
     pendingContainer.innerHTML = '';
     completedContainer.innerHTML = '';
 
